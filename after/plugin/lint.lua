@@ -12,9 +12,3 @@ require('lint').linters_by_ft = {
   dockerfile = {'hadolint',},
   terraform = {'tflint'},
 }
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
---    vim.lsp.buf.format()
---    require("lint").try_lint()
-  end,
-})

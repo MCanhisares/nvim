@@ -37,10 +37,9 @@ return require('packer').startup(function(use)
   use('ThePrimeagen/harpoon')
   use('tpope/vim-fugitive')
   use("nvim-treesitter/nvim-treesitter-context");
-  use('mhartington/formatter.nvim')
   use('mfussenegger/nvim-lint')
   use({
-    "Pocco81/auto-save.nvim",
+    "okuuva/auto-save.nvim",
     config = function()
       require("auto-save").setup {
       }
@@ -89,9 +88,12 @@ return require('packer').startup(function(use)
   use({
     'm4xshen/autoclose.nvim',
     config = function()
-      require("autoclose").setup()
-    end
+      require("autoclose").setup {
+      }
+    end,
   })
+
+
   if packer_bootstrap then
     require('packer').sync()
   end

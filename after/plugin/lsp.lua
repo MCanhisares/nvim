@@ -10,7 +10,6 @@ lsp.ensure_installed({
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
 
-
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -23,7 +22,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-  suggest_lsp_servers = True,
+  suggest_lsp_servers = true,
   sign_icons = {
     error = 'E',
     warn = 'W',
@@ -46,7 +45,6 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
-
 lsp.setup()
 
 vim.diagnostic.config({

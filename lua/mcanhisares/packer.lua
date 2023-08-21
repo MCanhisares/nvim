@@ -42,6 +42,7 @@ return require('packer').startup(function(use)
     "okuuva/auto-save.nvim",
     config = function()
       require("auto-save").setup {
+        vim.loader.enable()
       }
     end,
   })
@@ -97,12 +98,45 @@ return require('packer').startup(function(use)
     'folke/trouble.nvim',
     tag = 'v2.8.0',
     -- or                            , branch = '0.1.x',
-    requires = { { 'nvim-lua/plenary.nvim' } }
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    config = function()
+      local trouble = require('trouble')
+      trouble.setup {
+        position = "right"
+      }
+      vim.keymap.set("n", "<leader>xx", ":TroubleToggle <CR>")
+      vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end)
+      vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end)
+      vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end)
+      vim.keymap.set("n", "<leader>xl", function() require("trouble").open("loclist") end)
+      vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") end)
+    end
   })
   use 'voldikss/vim-floaterm'
-  use 'preservim/tagbar'
+  use {
+    'stevearc/aerial.nvim',
+    config = function()
+      require('aerial').setup({
+        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+        on_attach = function(bufnr)
+          -- Jump forwards/backwards with '{' and '}'
+          vim.keymap.set('n', '{', '<cmd>AerialPrev<CR>', { buffer = bufnr })
+          vim.keymap.set('n', '}', '<cmd>AerialNext<CR>', { buffer = bufnr })
+          vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+        end
+      })
+    end
+  }
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
+  use 'RRethy/vim-illuminate'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+  use "tpope/vim-surround"
   if packer_bootstrap then
     require('packer').sync()
   end

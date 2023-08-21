@@ -92,8 +92,17 @@ return require('packer').startup(function(use)
       }
     end,
   })
-
-
+  use 'puremourning/vimspector'
+  use({
+    'folke/trouble.nvim',
+    tag = 'v2.8.0',
+    -- or                            , branch = '0.1.x',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  })
+  use 'voldikss/vim-floaterm'
+  use 'preservim/tagbar'
+  use 'nvim-tree/nvim-tree.lua'
+  use 'nvim-tree/nvim-web-devicons'
   if packer_bootstrap then
     require('packer').sync()
   end

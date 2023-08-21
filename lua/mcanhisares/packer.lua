@@ -117,6 +117,22 @@ return require('packer').startup(function(use)
     'stevearc/aerial.nvim',
     config = function()
       require('aerial').setup({
+        backends = { "lsp", "treesitter", "markdown", "man" },
+        filter_kind = {
+          "Class",
+          "Constructor",
+          "Enum",
+          "Function",
+          "Interface",
+          "Module",
+          "Method",
+          "Struct",
+          "Object",
+          "TypeParameter",
+          "Variable",
+          "Constant",
+          "Event",
+        },
         -- optionally use on_attach to set keymaps when aerial has attached to a buffer
         on_attach = function(bufnr)
           -- Jump forwards/backwards with '{' and '}'

@@ -61,6 +61,7 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
+      { 'hrsh7th/cmp-nvim-lsp-signature-help'},
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
 
@@ -93,7 +94,14 @@ return require('packer').startup(function(use)
       }
     end,
   })
-  use 'puremourning/vimspector'
+  use {
+    "puremourning/vimspector",
+    cmd = { "VimspectorInstall", "VimspectorUpdate" },
+    fn = { "vimspector#Launch()", "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+    config = function()
+      require("config.vimspector").setup()
+    end,
+  }
   use({
     'folke/trouble.nvim',
     tag = 'v2.8.0',

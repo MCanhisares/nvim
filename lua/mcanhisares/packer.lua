@@ -61,7 +61,7 @@ return require('packer').startup(function(use)
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-path' },
       { 'saadparwaiz1/cmp_luasnip' },
-      { 'hrsh7th/cmp-nvim-lsp-signature-help'},
+      { 'hrsh7th/cmp-nvim-lsp-signature-help' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/cmp-nvim-lua' },
 
@@ -161,6 +161,20 @@ return require('packer').startup(function(use)
     end
   }
   use "tpope/vim-surround"
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
+  }
+  use 'nanozuki/tabby.nvim'
+  use "kkharji/sqlite.lua"
+  use {
+    'prochri/telescope-all-recent.nvim',
+    config = function()
+      require 'telescope-all-recent'.setup {
+        -- your config goes here
+      }
+    end
+  }
   if packer_bootstrap then
     require('packer').sync()
   end
